@@ -1,0 +1,35 @@
+#footer{
+    background-color: var(--color-black);
+    color: var(--color-white);
+    padding: 40px 0;
+}
+
+#contact{
+
+}
+
+#contact ul{
+
+}
+
+#contact ul li{
+    padding-left: 40px;
+    margin-bottom: 25px;
+    position: relative;
+    font-family: "Font Awesome 5 Free";
+}
+#contact ul li:before{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+#contact ul li.address:before{
+    content: "\f3c5";
+}
+#contact ul li.phone:before{
+    content: "\f2a0";
+}
+#contact ul li.email:before{
+    content: "\f0e0";
+}

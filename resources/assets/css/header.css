@@ -1,0 +1,45 @@
+#header-top{
+    height: 32px;
+    line-height: 32px;
+    background-color: var(--color-grey);
+    color: var(--color-black);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    font-weight: 300;
+    text-align: center;
+}
+
+#header-bot{
+    height: 80px;
+    line-height: 80px;
+    background-color: var(--color-white);
+    color: var(--color-black);
+    font-size: 1rem;
+}
+
+#social{
+    flex: 0 0 10%;
+}
+#social>a{
+    color: unset;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+#search{
+    text-align: right;
+    flex: 0 0 10%;
+}
+
+#header-nav ul{
+    display: flex;
+    justify-content: center;
+}
+#header-nav ul li{
+    text-transform: uppercase;
+    margin: 0 15px;
+}
+#header-nav ul li img{
+    vertical-align: baseline;
+    transform: translateY(2px);
+}
