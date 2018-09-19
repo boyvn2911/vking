@@ -18,9 +18,9 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('image');
-            $table->string('price-org');
-            $table->string('price-vking');
-            $table->string('price-sale');
+            $table->string('price_org');
+            $table->string('price_vking');
+            $table->string('price_sale');
             $table->string('size');
             $table->text('description');
             $table->tinyInteger('hot');
