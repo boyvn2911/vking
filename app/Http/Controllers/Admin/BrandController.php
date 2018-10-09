@@ -2,94 +2,123 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Repositories\BrandRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Brand;
 
 class BrandController extends Controller
 {
-    protected $brand;
+    /**
+     * The BrandRepository instance.
+     *
+     * @var \App\Repositories\BrandRepository
+     */
+    protected $repository;
 
-    public function __construct(Brand $brand)
+    /**
+     * Create a new PostController instance.
+     *
+     * @param  \App\Repositories\PostRepository $repository
+     */
+    public function __construct(BrandRepository $repository)
     {
-        $this->brand = $brand;
+        $this->repository = $repository;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return $this->brand->get();
+        $brands = $this->repository->getAll();
+        return view('back.brands.index', compact('brands'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('admin.brand.create');
+        return view('back.brands.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @return
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    public function store(Request $rq)
+    public function store(Request $request)
     {
-        $brand = $this->brand;
-        return $brand->handleStore($rq);
+        $this->repository->store($request);
+
+        return back()->with('success',__('Brand has been successfully created'));
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        return $this->brand->find($id);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return
+     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $brand = $this->brand->find($id);
-        return view('admin.brand.edit', compact('brand') );
+        $brand = $this->repository->find($id);
+
+        return view('back.brands.create',compact('brand'));
     }
 
     /**
      * Update the specified resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return
+     * @return \Illuminate\Http\Response
      */
-    public function update($id, Request $rq)
+    public function update(Request $request, $id)
     {
-        $brand = $this->brand->find($id);
-        return $brand->handleStore($rq);
+        $this->repository->find($id)->update($request->all());
+
+        return redirect( route('admin.brand') )->with('success',__('Cập nhật thành công'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return
+     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $brand = $this->brand->find($id);
-        return $brand->handleDelete();
+        $this->repository->destroy($id);
+
+        return back()->with('success',__('Xóa thành công'));
     }
+
+    /**
+     * Update "order" field for brand.
+     *
+     * @param  \App\Models\Post $post
+     * @return \Illuminate\Http\Response
+     */
+    public function updateOrder()
+    {
+
+    }
+
 }
