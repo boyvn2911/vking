@@ -2,94 +2,123 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    protected $category;
+    /**
+     * The BrandRepository instance.
+     *
+     * @var \App\Repositories\CategoryRepository
+     */
+    protected $repository;
 
-    public function __construct(Category $category)
+    /**
+     * Create a new CategoryController instance.
+     *
+     * @param  \App\Repositories\CategoryRepository $repository
+     */
+    public function __construct(CategoryRepository $repository)
     {
-        $this->category = $category;
+        $this->repository = $repository;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return $this->category->get();
+        $categories = $this->repository->getAll();
+        return view('back.categories.index', compact('categories'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('admin.category.create');
+        return view('back.categories.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @return
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    public function store(Request $rq)
+    public function store(Request $request)
     {
-        $category = $this->category;
-        return $category->handleStore($rq);
+        $this->repository->store($request);
+
+        return back()->with('success',__('Category has been successfully created'));
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        return $this->category->find($id);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return
+     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $category = $this->category->find($id);
-        return view('admin.category.edit', compact('category') );
+        $brand = $this->repository->find($id);
+
+        return view('back.categories.create',compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return
+     * @return \Illuminate\Http\Response
      */
-    public function update($id, Request $rq)
+    public function update(Request $request, $id)
     {
-        $category = $this->category->find($id);
-        return $category->handleStore($rq);
+        $this->repository->find($id)->update($request->all());
+
+        return redirect( route('admin.category') )->with('success',__('Cập nhật thành công'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return
+     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $category = $this->category->find($id);
-        return $category->handleDelete();
+        $this->repository->destroy($id);
+
+        return back()->with('success',__('Xóa thành công'));
     }
+
+    /**
+     * Update "order" field for brand.
+     *
+     * @param  \App\Models\Post $post
+     * @return \Illuminate\Http\Response
+     */
+    public function updateOrder()
+    {
+
+    }
+
 }
