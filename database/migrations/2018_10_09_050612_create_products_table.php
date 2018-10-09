@@ -18,11 +18,14 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->integer('price_vking');
-            $table->integer('price_org');
-            $table->integer('price_sale');
-            $table->tinyInteger('hot');
+            $table->integer('price_org')->nullable();
+            $table->integer('price_sale')->nullable();
+            $table->tinyInteger('hot')->nullable();
             $table->string('image');
-            $table->string('size');
+            $table->string('size')->nullable();
+            $table->text('description');
+            $table->string('position')->nullable();
+            $table->boolean('active');
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')
                 ->references('id')

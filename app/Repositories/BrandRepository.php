@@ -24,4 +24,14 @@ class BrandRepository
     {
         $this->brand = $brand;
     }
+
+    /**
+     *
+     *
+     * @param 'asc' or 'desc' $direction
+     */
+    public function queryAllOrderByPosition($direction)
+    {
+        return $this->brand->where('active',true)->orderBy('position', $direction);
+    }
 }

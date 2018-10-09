@@ -15,15 +15,19 @@ class BrandController extends Controller
      */
     protected $repository;
 
+
+
     /**
-     * Create a new PostController instance.
+     * Create a new BrandController instance.
      *
-     * @param  \App\Repositories\PostRepository $repository
+     * @param  \App\Repositories\BrandRepository $repository
      */
     public function __construct(BrandRepository $repository)
     {
         $this->repository = $repository;
     }
+
+
 
     /**
      * Display a listing of the resource.
@@ -36,6 +40,8 @@ class BrandController extends Controller
         return view('back.brands.index', compact('brands'));
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -45,6 +51,8 @@ class BrandController extends Controller
     {
         return view('back.brands.create');
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -59,6 +67,8 @@ class BrandController extends Controller
         return back()->with('success',__('Brand has been successfully created'));
     }
 
+
+
     /**
      * Display the specified resource.
      *
@@ -69,6 +79,8 @@ class BrandController extends Controller
     {
         //
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
