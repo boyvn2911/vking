@@ -25,4 +25,8 @@ class ProductRepository
         $this->product = $product;
     }
 
+    public function getProductsOrderedbyPosition($nbr, $direction)
+    {
+        return $this->product->with(['brand','category'])->orderBy('position',$direction)->paginate($nbr);
+    }
 }

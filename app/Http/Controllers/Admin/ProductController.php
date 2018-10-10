@@ -32,8 +32,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = $this->repository->paginate(10);
-        return view('admin.product.index', compact('products'));
+        $products = $this->repository->getProductsOrderedbyPosition(10,'desc');
+        return view('admin.products.index', compact('products'));
     }
 
     /**
@@ -66,7 +66,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = $this->repository->find($id);
-        return view('admin.product.show', compact('product'));
+        return view('admin.products.show', compact('product'));
     }
 
     /**
@@ -78,7 +78,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = $this->repository->find($id);
-        return view('admin.product.edit', compact('product'));
+        return view('admin.products.edit', compact('product'));
     }
 
     /**
