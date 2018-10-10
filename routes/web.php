@@ -26,10 +26,13 @@ Route::group(['namespace' => 'admin', 'prefix' => 'admin'], function () {
         Route::get('delete/{id}','BrandController@destroy');
 
         Route::get('{id}','BrandController@show');
+
+        Route::post('updateStatus/{id}','BrandController@updateStatus');
+        Route::post('changeName/{id}','BrandController@changeName');
     });
 
     Route::group(['prefix' => 'category'], function () {
-        Route::get('index','CategoryController@index');
+        Route::get('/','CategoryController@index');
 
         Route::get('add','CategoryController@create');
         Route::post('add','CategoryController@store');
@@ -40,10 +43,13 @@ Route::group(['namespace' => 'admin', 'prefix' => 'admin'], function () {
         Route::get('delete/{id}','CategoryController@destroy');
 
         Route::get('{id}','CategoryController@show');
+
+        Route::post('updateStatus/{id}','CategoryController@updateStatus');
+        Route::post('changeName/{id}','CategoryController@changeName');
     });
 
     Route::group(['prefix' => 'product'], function () {
-        Route::get('index','ProductController@index');
+        Route::get('/','ProductController@index');
 
         Route::get('add','ProductController@create');
         Route::post('add','ProductController@store');
