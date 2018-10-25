@@ -123,7 +123,8 @@
                                     <label>Phân loại <span title="Thông tin bắt buộc">*</span></label>
                                     <select class="form-control" name="category_id">
                                         @foreach($categories as $category)
-                                            <option @if($category->id == ($product->category_id ?? null) ) selected @endif value="{{ $category->id }}">{{$category->name}}</option>
+                                            <option @if($category->id == ($product->category_id ?? null) ) selected
+                                                    @endif value="{{ $category->id }}">{{$category->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -131,7 +132,8 @@
                                     <label>Thương hiệu <span title="Thông tin bắt buộc">*</span></label>
                                     <select class="form-control" name="brand_id">
                                         @foreach($brands as $brand)
-                                            <option @if($brand->id == ($product->brand_id ?? null) ) selected @endif value="{{ $brand->id }}">{{$brand->name}}</option>
+                                            <option @if($brand->id == ($product->brand_id ?? null) ) selected
+                                                    @endif value="{{ $brand->id }}">{{$brand->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -169,6 +171,16 @@
                                                 <span class="input-group-addon">VNĐ</span>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Size <span title="Thông tin bắt buộc">*</span></label>
+                                    <div class="form-group">
+                                        <input type="checkbox"> S
+                                        <input type="checkbox"> M
+                                        <input type="checkbox"> L
+                                        <input type="checkbox"> XL
                                     </div>
                                 </div>
 
