@@ -138,7 +138,7 @@ class BrandController extends Controller
 
 
     /**
-     * Change status of a category
+     * Change status of a brand
      *
      * @param  $id
      */

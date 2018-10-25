@@ -60,5 +60,9 @@ Route::group(['namespace' => 'admin', 'prefix' => 'admin'], function () {
         Route::get('delete/{id}','ProductController@destroy');
 
         Route::get('{id}','ProductController@show');
+
+        Route::post('updateStatus/{id}','ProductController@updateStatus');
+        Route::get('deleteImage/{id}/{key}','ProductController@deleteImage');
+        Route::get('makeAva/{id}/{key}','ProductController@makeAva');
     });
 });

@@ -14,7 +14,7 @@
     @foreach($products as $product)
         <tr>
             <td>{{ $product->position ?? 'STT' }}</td>
-            <td>{{ $product->name ?? 'TÊN' }}</td>
+            <td><a href="{{asset('admin/product/edit/'.$product->id)}}">{{ $product->name ?? 'TÊN' }}</a></td>
             <td>{{ $product->brand->name }}</td>
             <td>{{ $product->category->name }}</td>
             <td>{{ $product->price_vking }}</td>
@@ -24,13 +24,13 @@
                     @if($product->active)
                         <button type="submit" class="btn btn-success btn-block">Active</button>
                     @else
-                        <button type="submit" class="btn btn-success btn-block">Inactive</button>
+                        <button type="submit" class="btn btn-danger btn-block">Inactive</button>
                     @endif
                 </form>
             </td>
             <td>
                 <a onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?')"
-                   href="{{ asset('admin/category/delete/'.$product->id) }}"><i
+                   href="{{ asset('admin/product/delete/'.$product->id) }}"><i
                             class="fa fa-trash"></i></a>
             </td>
         </tr>
