@@ -1,0 +1,41 @@
+.item {
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 60px;
+    font-family: Geomanist;
+}
+
+.item > .image {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin-bottom: 25px;
+}
+
+.item > .image:after {
+    content: "";
+    display: block;
+    padding-top: 120%;
+}
+
+.item > .detail {
+    font-weight: 500;
+}
+
+.item > .detail > .name {
+    text-transform: uppercase;
+}
+.load-more{
+    text-align: center;
+}
+.load-more .butt{
+    background: black;
+    color: white!important;
+    display: inline-block;
+    height: 60px;
+    line-height: 60px;
+    padding: 0 100px;
+    text-decoration: none;
+    font-size: 24px;
+    font-family: "Encode Sans Condensed";
+}

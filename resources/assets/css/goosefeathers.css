@@ -1,0 +1,13 @@
+.goosefeathers{
+    font-family: Geomanist;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 15px 0;
+    color: #999;
+}
+.goosefeathers a{
+    color: #999;
+}
+.goosefeathers a.active{
+    color: #666;
+}

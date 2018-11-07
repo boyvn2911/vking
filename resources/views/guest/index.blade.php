@@ -44,8 +44,8 @@
                     ITEM HOT
                     <span class="line-decor"><i class="far fa-square"></i></span>
                 </h2>
-
             </div>
+
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="item">
@@ -55,9 +55,8 @@
                             <div class="name">Áo Phông đen</div>
                             <div class="brand">Gucci</div>
                             <div class="price">
-                                <span class="price-org">999.000</span>
-                                <span class="price-vking">800.000</span>
-                                <span class="price-sale">400.000</span>
+                                <span class="price-sale">400.000 VNĐ</span>
+                                <span class="price-org">999.000 VNĐ</span>
                             </div>
                         </div>
                     </div>
@@ -70,9 +69,8 @@
                             <div class="name">Áo Phông đen</div>
                             <div class="brand">Gucci</div>
                             <div class="price">
-                                <span class="price-org">999.000</span>
-                                <span class="price-vking">800.000</span>
-                                <span class="price-sale">400.000</span>
+                                <span class="price-vking">800.000 VNĐ</span>
+                                <span class="price-org">999.000 VNĐ</span>
                             </div>
                         </div>
                     </div>
@@ -85,9 +83,8 @@
                             <div class="name">Áo Phông đen</div>
                             <div class="brand">Gucci</div>
                             <div class="price">
-                                <span class="price-org">999.000</span>
-                                <span class="price-vking">800.000</span>
-                                <span class="price-sale">400.000</span>
+                                <span class="price-sale">400.000 VNĐ</span>
+                                <span class="price-org">999.000 VNĐ</span>
                             </div>
                         </div>
                     </div>
@@ -100,9 +97,7 @@
                             <div class="name">Áo Phông đen</div>
                             <div class="brand">Gucci</div>
                             <div class="price">
-                                <span class="price-org">999.000</span>
-                                <span class="price-vking">800.000</span>
-                                <span class="price-sale">400.000</span>
+                                <a href="https://www.facebook.com/messages/t/authentic14ths">GIÁ LIÊN HỆ</a>
                             </div>
                         </div>
                     </div>
@@ -148,9 +143,8 @@
                             <div class="name">Áo Phông đen</div>
                             <div class="brand">Gucci</div>
                             <div class="price">
-                                <span class="price-org">999.000</span>
-                                <span class="price-vking">800.000</span>
-                                <span class="price-sale">400.000</span>
+                                <span class="price-sale">400.000 VNĐ</span>
+                                <span class="price-org">999.000 VNĐ</span>
                             </div>
                         </div>
                     </div>
@@ -164,9 +158,7 @@
                             <div class="name">Áo Phông đen</div>
                             <div class="brand">Gucci</div>
                             <div class="price">
-                                <span class="price-org">999.000</span>
-                                <span class="price-vking">800.000</span>
-                                <span class="price-sale">400.000</span>
+                                <a href="https://www.facebook.com/messages/t/authentic14ths">GIÁ LIÊN HỆ</a>
                             </div>
                         </div>
                     </div>
@@ -180,9 +172,8 @@
                             <div class="name">Áo Phông đen</div>
                             <div class="brand">Gucci</div>
                             <div class="price">
-                                <span class="price-org">999.000</span>
-                                <span class="price-vking">800.000</span>
-                                <span class="price-sale">400.000</span>
+                                <span class="price-sale">400.000 VNĐ</span>
+                                <span class="price-org">999.000 VNĐ</span>
                             </div>
                         </div>
                     </div>
@@ -196,9 +187,8 @@
                             <div class="name">Áo Phông đen</div>
                             <div class="brand">Gucci</div>
                             <div class="price">
-                                <span class="price-org">999.000</span>
-                                <span class="price-vking">800.000</span>
-                                <span class="price-sale">400.000</span>
+                                <span class="price-sale">400.000 VNĐ</span>
+                                <span class="price-org">999.000 VNĐ</span>
                             </div>
                         </div>
                     </div>
@@ -212,9 +202,8 @@
                             <div class="name">Áo Phông đen</div>
                             <div class="brand">Gucci</div>
                             <div class="price">
-                                <span class="price-org">999.000</span>
-                                <span class="price-vking">800.000</span>
-                                <span class="price-sale">400.000</span>
+                                <span class="price-sale">400.000 VNĐ</span>
+                                <span class="price-org">999.000 VNĐ</span>
                             </div>
                         </div>
                     </div>

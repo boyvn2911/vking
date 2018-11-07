@@ -13,7 +13,7 @@
           integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link rel="stylesheet" href="resources/assets/css/base.css">
     <link href="https://fonts.googleapis.com/css?family=EB+Garamond:600" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:200,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:200,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="resources/assets/css/fonts/fonts.css">
     <link rel="stylesheet" href="resources/assets/css/header.css">
     <link rel="stylesheet" href="resources/assets/css/footer.css">
@@ -40,5 +40,44 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 @yield('script')
+<script>
+    $(document).ready(function () {
+        $('#header-nav ul li.brand').click(function () {
+            if ($('#header-bot .down .cate').css('display') == 'none') {
+                $('#header-bot .down .cate').hide();
+                $('#header-bot .down .bran').show();
+                $('#header-bot .down').slideToggle();
+            } else {
+                $('#header-bot .down').slideToggle(function(){
+                    $('#header-bot .down .cate').hide();
+                    $('#header-bot .down .bran').show();
+                    $('#header-bot .down').slideToggle();
+                });
+            }
+        });
+
+        $('#header-nav ul li.category').click(function () {
+            if ($('#header-bot .down .bran').css('display') == 'none') {
+                $('#header-bot .down .cate').show();
+                $('#header-bot .down .bran').hide();
+                $('#header-bot .down').slideToggle();
+            } else {
+                $('#header-bot .down').slideToggle(function(){
+                    $('#header-bot .down .bran').hide();
+                    $('#header-bot .down .cate').show();
+                    $('#header-bot .down').slideToggle()
+                });
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#to-top').click(function () {
+            $('body,html').animate({scrollTop: 0}, 600);
+        });
+    });
+</script>
 </body>
 </html>

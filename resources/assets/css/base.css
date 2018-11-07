@@ -1,6 +1,5 @@
 body {
     font-size: 16px;
-    font-family: 'geomanist';
     --color-black: #000;
     --color-white: #fff;
     --color-grey: #e5e5e5;
@@ -39,4 +38,10 @@ h2{
 
 .line-decor:before {
     right: 55%;
+}
+
+#to-top{
+    font-size: 24px;
+    font-weight: 500;
+    cursor: pointer;
 }

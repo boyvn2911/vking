@@ -12,7 +12,9 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::get('list',function(){return view('guest.pages.list');});
 
+Route::get('detail',function(){return view('guest.pages.detail');});
 
 Route::group(['namespace' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
