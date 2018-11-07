@@ -1,0 +1,70 @@
+.img img{
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.detail{
+    font-family: Geomanist;
+    top: 130px;
+    max-width: 635px;
+}
+
+.detail h1{
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+.detail .prc{
+    font-size: 24px;
+}
+.detail .size{
+    margin-top: 30px;
+}
+.detail .size .a{
+    font-family: "Encode Sans Condensed";
+    font-size: 16px;
+    font-weight: bold;
+}
+.detail .size .b{
+    font-weight: normal;
+    color: #999;
+}
+.detail .size .b .active{
+    color: black;
+}
+.detail .size .b .ba{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.detail .desc{
+    margin-top: 30px;
+}
+
+.item > .image {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin-bottom: 25px;
+}
+
+.item > .image:after {
+    content: "";
+    display: block;
+    padding-top: 120%;
+}
+
+.item > .det{
+    font-weight: 500;
+}
+
+.item > .det > .name {
+    text-transform: uppercase;
+}
+
+
+.similar{
+    font-family: "Encode Sans Condensed";
+    font-size: 30px;
+    font-weight: bold;
+}

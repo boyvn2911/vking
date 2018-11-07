@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Repositories\ProductRepository;
+use App\Repositories\{
+    ProductRepository, CategoryRepository, BrandRepository
+};
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -32,8 +34,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = $this->repository->paginate(10);
-        return view('admin.product.index', compact('products'));
+        $products = $this->repository->getProductsOrderedbyPosition(10, 'desc');
+        return view('admin.products.index', compact('products'));
     }
 
     /**
@@ -41,9 +43,11 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(BrandRepository $brandRepository, CategoryRepository $categoryRepository)
     {
-        return view('admin.product.create');
+        $brands = $brandRepository->getAllOrderByPosition('asc');
+        $categories = $categoryRepository->getAllOrderByPosition('asc');
+        return view('admin.products.create', compact('brands', 'categories'));
     }
 
     /**
@@ -54,7 +58,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        return redirect(route('admin.product'))->with('success', __('Thêm sản phẩm thành công'));
+        $this->repository->handleStore($request);
+        return redirect('admin/product')->with('success', __('Thêm sản phẩm thành công'));
     }
 
     /**
@@ -65,8 +70,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = $this->repository->find($id);
-        return view('admin.product.show', compact('product'));
+        $product = $this->repository->show($id);
+        return view('admin.products.show', compact('product'));
     }
 
     /**
@@ -75,10 +80,12 @@ class ProductController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(BrandRepository $brandRepository, CategoryRepository $categoryRepository, $id)
     {
-        $product = $this->repository->find($id);
-        return view('admin.product.edit', compact('product'));
+        $brands = $brandRepository->getAllOrderByPosition('asc');
+        $categories = $categoryRepository->getAllOrderByPosition('asc');
+        $product = $this->repository->show($id);
+        return view('admin.products.create', compact('product','brands','categories'));
     }
 
     /**
@@ -90,6 +97,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->repository->handleStore($request, $id);
         return back()->with('success', __('Cập nhật sản phẩm thành công'));
     }
 
@@ -101,6 +109,34 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+        $this->repository->destroy($id);
         return back()->with('success', __('Xóa sản phẩm thành công'));
+    }
+
+    /**
+     * Change status of a brand
+     *
+     * @param  $id
+     */
+    public function updateStatus($id)
+    {
+        try {
+            $result = $this->repository->updateStatus($id);
+        } catch (ModelNotFoundException $e) {
+            return back()->with('error', $e->getMessage());
+        }
+        return back()->with('success', 'Trạng thái của ' . $result->name . ' đã thay đổi');
+    }
+
+    public function deleteImage($id, $key)
+    {
+        $this->repository->destroyImage($id, $key);
+        return back()->with('success', 'Xóa ảnh thành công');
+    }
+
+    public function makeAva($id, $key)
+    {
+        $this->repository->makeAva($id, $key);
+        return back()->with('success','Đổi ảnh đại diện thành công');
     }
 }

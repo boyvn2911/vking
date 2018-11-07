@@ -11,48 +11,63 @@
 |
 */
 
+Route::get('/', 'HomeController@index');
+Route::get('list',function(){return view('guest.pages.list');});
+
+Route::get('detail',function(){return view('guest.pages.detail');});
+
 Route::group(['namespace' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
 
     Route::group(['prefix' => 'brand'], function () {
-        Route::get('/','BrandController@index');
+        Route::get('/', 'BrandController@index');
 
-        Route::get('add','BrandController@create');
-        Route::post('add','BrandController@store');
+        Route::get('add', 'BrandController@create');
+        Route::post('add', 'BrandController@store');
 
-        Route::get('edit/{id}','BrandController@edit');
-        Route::post('edit/{id}','BrandController@update');
+        Route::get('edit/{id}', 'BrandController@edit');
+        Route::post('edit/{id}', 'BrandController@update');
 
-        Route::get('delete/{id}','BrandController@destroy');
+        Route::get('delete/{id}', 'BrandController@destroy');
 
-        Route::get('{id}','BrandController@show');
+        Route::get('{id}', 'BrandController@show');
+
+        Route::post('updateStatus/{id}', 'BrandController@updateStatus');
+        Route::post('changeName/{id}', 'BrandController@changeName');
     });
 
     Route::group(['prefix' => 'category'], function () {
-        Route::get('index','CategoryController@index');
+        Route::get('/', 'CategoryController@index');
 
-        Route::get('add','CategoryController@create');
-        Route::post('add','CategoryController@store');
+        Route::get('add', 'CategoryController@create');
+        Route::post('add', 'CategoryController@store');
 
-        Route::get('edit/{id}','CategoryController@edit');
-        Route::post('edit/{id}','CategoryController@update');
+        Route::get('edit/{id}', 'CategoryController@edit');
+        Route::post('edit/{id}', 'CategoryController@update');
 
-        Route::get('delete/{id}','CategoryController@destroy');
+        Route::get('delete/{id}', 'CategoryController@destroy');
 
-        Route::get('{id}','CategoryController@show');
+        Route::get('{id}', 'CategoryController@show');
+
+        Route::post('updateStatus/{id}', 'CategoryController@updateStatus');
+        Route::post('changeName/{id}', 'CategoryController@changeName');
     });
 
     Route::group(['prefix' => 'product'], function () {
-        Route::get('index','ProductController@index');
+        Route::get('/', 'ProductController@index');
 
-        Route::get('add','ProductController@create');
-        Route::post('add','ProductController@store');
+        Route::get('add', 'ProductController@create');
+        Route::post('add', 'ProductController@store');
 
-        Route::get('edit/{id}','ProductController@edit');
-        Route::post('edit/{id}','ProductController@update');
+        Route::get('edit/{id}', 'ProductController@edit');
+        Route::post('edit/{id}', 'ProductController@update');
 
-        Route::get('delete/{id}','ProductController@destroy');
+        Route::get('delete/{id}', 'ProductController@destroy');
 
-        Route::get('{id}','ProductController@show');
+        Route::get('{id}', 'ProductController@show');
+
+        Route::post('updateStatus/{id}', 'ProductController@updateStatus');
+        Route::get('deleteImage/{id}/{key}', 'ProductController@deleteImage');
+        Route::get('makeAva/{id}/{key}', 'ProductController@makeAva');
     });
 });

@@ -1,0 +1,19 @@
+#sidebar{
+    font-family: "Encode Sans Condensed";
+    top: 130px;
+}
+
+#sidebar h4{
+    font-size: 30px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#sidebar a{
+    display: block;
+    font-weight: 700;
+    color: black;
+    text-decoration: none;
+    margin-bottom: 15px;
+}

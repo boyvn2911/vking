@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Repositories\BrandRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BrandRequest;
 
 class BrandController extends Controller
 {
@@ -14,7 +15,6 @@ class BrandController extends Controller
      * @var \App\Repositories\BrandRepository
      */
     protected $repository;
-
 
 
     /**
@@ -28,7 +28,6 @@ class BrandController extends Controller
     }
 
 
-
     /**
      * Display a listing of the resource.
      *
@@ -36,10 +35,9 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = $this->repository->getAll();
-        return view('back.brands.index', compact('brands'));
+        $brands = $this->repository->getAllOrderByPosition('asc');
+        return view('admin.brands.index', compact('brands'));
     }
-
 
 
     /**
@@ -49,30 +47,28 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('back.brands.create');
+        return view('admin.brands.create');
     }
-
 
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BrandRequest $request)
     {
         $this->repository->store($request);
 
-        return back()->with('success',__('Brand has been successfully created'));
+        return back()->with('success', __('Brand has been successfully created'));
     }
-
 
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -81,46 +77,53 @@ class BrandController extends Controller
     }
 
 
-
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $brand = $this->repository->find($id);
 
-        return view('back.brands.create',compact('brand'));
+        return view('admin.brands.create', compact('brand'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $this->repository->find($id)->update($request->all());
 
-        return redirect( route('admin.brand') )->with('success',__('Cập nhật thành công'));
+        return redirect(route('admin.brand'))->with('success', __('Cập nhật thành công'));
     }
 
+
+
     /**
-     * Remove the specified resource from storage.
+     * Destroy a brand if it has no product
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $this->repository->destroy($id);
-
-        return back()->with('success',__('Xóa thành công'));
+        try {
+            $this->repository->deleteBrand($id);
+        }catch (\Exception $e)
+        {
+            return back()->with('error', $e->getCode() === '23000' ? __('Không thể xóa thương hiệu còn sản phẩm') : $e->getMessage());
+        }
+        return back()->with('success', __('Xóa thành công'));
     }
+
+
 
     /**
      * Update "order" field for brand.
@@ -133,4 +136,35 @@ class BrandController extends Controller
 
     }
 
+
+    /**
+     * Change status of a brand
+     *
+     * @param  $id
+     */
+    public function updateStatus($id)
+    {
+        try {
+            $result = $this->repository->updateStatus($id);
+        } catch (ModelNotFoundException $e) {
+            return back()->with('error', $e->getMessage());
+        }
+        return back()->with('success', 'Trạng thái của ' . $result->name . ' đã thay đổi');
+    }
+
+    /**
+     * Change name of a current category
+     *
+     * @param  $id , CategoryRequest $request
+     */
+
+    public function changeName($id, BrandRequest $request)
+    {
+        try {
+            $this->repository->changeName($id, $request);
+        } catch (\Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
+        return back()->with('success', __('Đổi tên thương hiệu thành công'));
+    }
 }
