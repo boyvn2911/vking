@@ -11,8 +11,8 @@
         <div class="container">
             <div class="row justify-content-between">
                 <div id="social">
-                    <a href="" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/hoangnguyenauthentic/" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/authentic14ths" class="social-icon"><i class="fab fa-facebook-f"></i></a>
                 </div>
                 <div id="header-nav">
                     <ul>

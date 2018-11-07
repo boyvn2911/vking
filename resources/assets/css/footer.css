@@ -1,36 +1,69 @@
-#footer{
+#footer {
     background-color: var(--color-black);
     color: var(--color-white);
     padding: 40px 0;
 }
 
-#contact{
+#info p {
+    font-size: 14px;
+}
+
+#info .social-icon {
+    margin-right: 15px;
+    color: black;
+    background-color: white;
+    display: inline-block;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+}
+
+#info .logo {
+    margin-bottom: 25px;
+    display: inline-block;
+}
+
+#contact {
+    padding-top: 20px;
+    font-size: 14px;
+}
+
+#contact ul {
 
 }
 
-#contact ul{
-
-}
-
-#contact ul li{
+#contact ul li {
     padding-left: 40px;
     margin-bottom: 25px;
     position: relative;
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
 }
-#contact ul li:before{
+
+#contact ul li:before {
     position: absolute;
     left: 0;
     top: 50%;
     transform: translateY(-50%);
 }
-#contact ul li.address:before{
+
+#contact ul li.address:before {
     content: "\f3c5";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 24px;
 }
-#contact ul li.phone:before{
+
+#contact ul li.phone:before {
     content: "\f2a0";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 24px;
 }
-#contact ul li.email:before{
+
+#contact ul li.email:before {
     content: "\f0e0";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 24px;
 }

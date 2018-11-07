@@ -1,5 +1,6 @@
 body {
     font-size: 16px;
+    font-family: 'geomanist';
     --color-black: #000;
     --color-white: #fff;
     --color-grey: #e5e5e5;
@@ -20,6 +21,7 @@ h2 {
     margin-top: 10px;
 }
 h2{
+    font-family: 'EB Garamond', serif;
     padding-bottom: 50px;
 }
 .line-decor:after, .line-decor:before {
