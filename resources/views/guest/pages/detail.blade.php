@@ -63,7 +63,7 @@
                                 <div class="a">SIZE</div>
                                 <div class="b">
                                     @foreach($size as $key => $sz)
-                                        <span @if( in_array( ($key+1), @unserialize($product->size)) ) class="active" @endif>{{$sz}}</span>
+                                        <span @if( in_array( ($key+1), @unserialize($product->size) ?? []) ) class="active" @endif>{{$sz}}</span>
                                         @if($key < 3)<span class="ba">|</span>@endif
                                     @endforeach
                                 </div>
