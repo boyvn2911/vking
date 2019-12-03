@@ -21,7 +21,7 @@ class UploadImage
         $this->size = getimagesize($this->image);
         $this->extension = $this->image->extension();
         $this->filename = time() . "_" . rand(0, 9999999) . "_" . md5(rand(0, 9999999)) . "." . $this->extension;
-        $this->uploadPath = storage_path('app/upload');
+        $this->uploadPath = storage_path('app/public/upload');
         $this->watermark = $watermark ?? resource_path('assets/image/logo-small.png');
         $this->createImageFromFile();
     }
