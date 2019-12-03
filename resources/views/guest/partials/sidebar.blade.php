@@ -1,9 +1,11 @@
 <div id="sidebar">
-    <h4>Brand</h4>
+    @if( Request::segment(1) == 'category' )
+        <h4>Category</h4>
+    @elseif( Request::segment(1) == 'brand' )
+        <h4>Brand</h4>
+    @endif
 
-    <a href="">NEW ARRIVALS</a>
-    <a href="">HOT ITEMS</a>
-    <a href="">SALE ITEMS</a>
-    <a href="">DIOR</a>
-    <a href="">LV</a>
+    <a href="{{asset('new-list')}}">NEW ARRIVALS</a>
+    <a href="{{asset('hot-list')}}">HOT ITEMS</a>
+    <a href="{{asset('sale-list')}}">SALE ITEMS</a>
 </div>

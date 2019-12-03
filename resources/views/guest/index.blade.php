@@ -1,10 +1,19 @@
 @extends('guest.layout')
 
 @section('css')
-    <link rel="stylesheet" href="/resources/assets/css/index.css">
+    <link rel="stylesheet" href="{{ asset('resources/assets/css/index.css') }}">
 @stop
 
+@section('title','VKing Authentic')
+@section('image'){{asset('resources/assets/image/logo-circle.png')}}@stop
+@section('description')
+    Cam kết trọn đời hàng hiệu 100% authentic chính hãng xách tay UK, EU, US.
+@stop
 @section('script')
+    <script>
+        var hot_page=2;var new_page=2;$.ajax({url:'{{ asset('hot') }}',type:'GET',}).done(function(result){if(result.length<10){$('#load-more.hot').hide()}else{$('#hot').append(result)}});var load_hot=function(){$.ajax({url:'{{ asset('hot') }}?page='+hot_page,type:'GET',}).done(function(result){console.log(result.length);if(result.length<10){$('#load-more.hot').hide()}else{hot_page+=1;$('#hot').append(result)}})}
+        $.ajax({url:'{{ asset('new') }}',type:'GET',}).done(function(result){if(result.length<10){$('#load-more.new').hide()}else{$('#new').append(result)}});var load_new=function(){$.ajax({url:'{{ asset('new') }}?page='+new_page,type:'GET',}).done(function(result){if(result.length<10){$('#load-more.new').hide()}else{new_page+=1;$('#new').append(result)}})}
+    </script>
 @stop
 
 @section('main')
@@ -12,17 +21,20 @@
         <div id="bann" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active"
-                     style="background-image: url({{ asset('resources/assets/image/banner.png') }})">
+                     style="background-image: url({{ asset('resources/assets/image/banner.jpg') }})">
+                    <div class="fade-bg"></div>
                     <h3>New Arrival</h3>
                     <a href="" class="butt">XEM TIẾP <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="carousel-item"
                      style="background-image: url({{ asset('resources/assets/image/offer.png') }})">
+                    <div class="fade-bg"></div>
                     <h3>New Arrival</h3>
                     <a href="" class="butt">XEM TIẾP <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="carousel-item"
                      style="background-image: url({{ asset('resources/assets/image/banner.png') }})">
+                    <div class="fade-bg"></div>
                     <h3>New Arrival</h3>
                 </div>
             </div>
@@ -41,65 +53,20 @@
         <div class="container">
             <div class="text-center">
                 <h2>
-                    ITEM HOT
+                    HÀNG MỚI VỀ
                     <span class="line-decor"><i class="far fa-square"></i></span>
                 </h2>
             </div>
 
+            <div id="new" class="row">
+                {{--ajax new item--}}
+            </div>
+
             <div class="row">
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="item">
-                        <div class="image"
-                             style="background-image: url(https://cdn.raffaello-network.com/ti%E1%BA%BFng-vi%E1%BB%87t/fashion-details/461877/1541/gucci-qu%E1%BA%A7n-%C3%81o-tr%E1%BA%BB-em_gukclo-504253x9p07x9p07-4212-medium-1.jpg);"></div>
-                        <div class="detail">
-                            <div class="name">Áo Phông đen</div>
-                            <div class="brand">Gucci</div>
-                            <div class="price">
-                                <span class="price-sale">400.000 VNĐ</span>
-                                <span class="price-org">999.000 VNĐ</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="item">
-                        <div class="image"
-                             style="background-image: url(https://cdn.raffaello-network.com/ti%E1%BA%BFng-vi%E1%BB%87t/fashion-details/461877/1541/gucci-qu%E1%BA%A7n-%C3%81o-tr%E1%BA%BB-em_gukclo-504253x9p07x9p07-4212-medium-1.jpg);"></div>
-                        <div class="detail">
-                            <div class="name">Áo Phông đen</div>
-                            <div class="brand">Gucci</div>
-                            <div class="price">
-                                <span class="price-vking">800.000 VNĐ</span>
-                                <span class="price-org">999.000 VNĐ</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="item">
-                        <div class="image"
-                             style="background-image: url(https://cdn.raffaello-network.com/ti%E1%BA%BFng-vi%E1%BB%87t/fashion-details/461877/1541/gucci-qu%E1%BA%A7n-%C3%81o-tr%E1%BA%BB-em_gukclo-504253x9p07x9p07-4212-medium-1.jpg);"></div>
-                        <div class="detail">
-                            <div class="name">Áo Phông đen</div>
-                            <div class="brand">Gucci</div>
-                            <div class="price">
-                                <span class="price-sale">400.000 VNĐ</span>
-                                <span class="price-org">999.000 VNĐ</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="item">
-                        <div class="image"
-                             style="background-image: url(https://cdn.raffaello-network.com/ti%E1%BA%BFng-vi%E1%BB%87t/fashion-details/461877/1541/gucci-qu%E1%BA%A7n-%C3%81o-tr%E1%BA%BB-em_gukclo-504253x9p07x9p07-4212-medium-1.jpg);"></div>
-                        <div class="detail">
-                            <div class="name">Áo Phông đen</div>
-                            <div class="brand">Gucci</div>
-                            <div class="price">
-                                <a href="https://www.facebook.com/messages/t/authentic14ths">GIÁ LIÊN HỆ</a>
-                            </div>
-                        </div>
+                <div class="col-12">
+                    <div class="load-more">
+                        <button id="load-more" class="butt new" onclick="load_new()">XEM THÊM <i
+                                    class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -111,14 +78,12 @@
             <div class="row">
                 <div class="col-12 d-flex flex-row-reverse">
                     <div class="spe-container text-center">
-                        <h2>SPECIAL OFFER
+                        <h2>SẢN PHẨM SALE
                             <span class="line-decor"><i class="far fa-square"></i></span>
                         </h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has
-                            been
-                            the industry's standard dummy text ever since the 1500s, </p>
+                        <p>Hàng hot giá shock, số lượng còn sẵn cực kỳ hạn chế.</p>
 
-                        <a href="" class="butt">XEM TIẾP <i class="fas fa-arrow-right"></i></a>
+                        <a href="{{asset('sale-list')}}" class="butt">XEM TIẾP <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -129,86 +94,24 @@
         <div class="container">
             <div class="text-center">
                 <h2>
-                    ITEM HOT
+                    NỔI BẬT
                     <span class="line-decor"><i class="far fa-square"></i></span>
                 </h2>
             </div>
 
+            <div id="hot" class="row">
+                {{--ajax hot item--}}
+            </div>
+
             <div class="row">
-                <div class="col-12 col-md-6 col-lg-3">
-                    <div class="item">
-                        <div class="image"
-                             style="background-image: url(https://cdn.raffaello-network.com/ti%E1%BA%BFng-vi%E1%BB%87t/fashion-details/461877/1541/gucci-qu%E1%BA%A7n-%C3%81o-tr%E1%BA%BB-em_gukclo-504253x9p07x9p07-4212-medium-1.jpg);"></div>
-                        <div class="detail-real">
-                            <div class="name">Áo Phông đen</div>
-                            <div class="brand">Gucci</div>
-                            <div class="price">
-                                <span class="price-sale">400.000 VNĐ</span>
-                                <span class="price-org">999.000 VNĐ</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-3">
-                    <div class="item">
-                        <div class="image"
-                             style="background-image: url(https://cdn.raffaello-network.com/ti%E1%BA%BFng-vi%E1%BB%87t/fashion-details/461877/1541/gucci-qu%E1%BA%A7n-%C3%81o-tr%E1%BA%BB-em_gukclo-504253x9p07x9p07-4212-medium-1.jpg);"></div>
-                        <div class="detail-real">
-                            <div class="name">Áo Phông đen</div>
-                            <div class="brand">Gucci</div>
-                            <div class="price">
-                                <a href="https://www.facebook.com/messages/t/authentic14ths">GIÁ LIÊN HỆ</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-3">
-                    <div class="item">
-                        <div class="image"
-                             style="background-image: url(https://cdn.raffaello-network.com/ti%E1%BA%BFng-vi%E1%BB%87t/fashion-details/461877/1541/gucci-qu%E1%BA%A7n-%C3%81o-tr%E1%BA%BB-em_gukclo-504253x9p07x9p07-4212-medium-1.jpg);"></div>
-                        <div class="detail-real">
-                            <div class="name">Áo Phông đen</div>
-                            <div class="brand">Gucci</div>
-                            <div class="price">
-                                <span class="price-sale">400.000 VNĐ</span>
-                                <span class="price-org">999.000 VNĐ</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-3">
-                    <div class="item">
-                        <div class="image"
-                             style="background-image: url(https://cdn.raffaello-network.com/ti%E1%BA%BFng-vi%E1%BB%87t/fashion-details/461877/1541/gucci-qu%E1%BA%A7n-%C3%81o-tr%E1%BA%BB-em_gukclo-504253x9p07x9p07-4212-medium-1.jpg);"></div>
-                        <div class="detail-real">
-                            <div class="name">Áo Phông đen</div>
-                            <div class="brand">Gucci</div>
-                            <div class="price">
-                                <span class="price-sale">400.000 VNĐ</span>
-                                <span class="price-org">999.000 VNĐ</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-3">
-                    <div class="item">
-                        <div class="image"
-                             style="background-image: url(https://cdn.raffaello-network.com/ti%E1%BA%BFng-vi%E1%BB%87t/fashion-details/461877/1541/gucci-qu%E1%BA%A7n-%C3%81o-tr%E1%BA%BB-em_gukclo-504253x9p07x9p07-4212-medium-1.jpg);"></div>
-                        <div class="detail-real">
-                            <div class="name">Áo Phông đen</div>
-                            <div class="brand">Gucci</div>
-                            <div class="price">
-                                <span class="price-sale">400.000 VNĐ</span>
-                                <span class="price-org">999.000 VNĐ</span>
-                            </div>
-                        </div>
+                <div class="col-12">
+                    <div class="load-more">
+                        <button id="load-more" class="butt hot" onclick="load_hot()">XEM THÊM <i
+                                    class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 @stop

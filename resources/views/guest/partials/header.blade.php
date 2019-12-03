@@ -3,7 +3,8 @@
     <section id="header-top">
         <div class="container">
             <div class="row justify-content-center">
-                Quảng cáo: free shipping on orders over $250
+                HÀNG HIỆU AUTHENTIC - 14 TRƯƠNG HÁN SIÊU - <a href="tel:+84948181488"><b
+                            style="margin-left:3px; font-weight: bold;">094 818 1488</b></a>
             </div>
         </div>
     </section>
@@ -20,35 +21,38 @@
                 <div id="header-nav">
                     <ul>
                         <li class="brand">thương hiệu</li>
-                        <li><a href="/"><img src="resources/assets/image/logo.png"></a></li>
-                        <li class="category">phân loại</li>
+                        <li><a href="/"><img src="{{ asset('resources/assets/image/logo.png') }}"></a></li>
+                        <li class="category">danh mục</li>
                     </ul>
                 </div>
                 <div id="search">
-                    <a><i class="fas fa-search"></i></a>
+                    {{--<a><i class="fas fa-search"></i></a>--}}
                 </div>
             </div>
         </div>
 
         <div class="container down">
             <div class="row">
-                <a href="" class="col-3">NEW ARRIVALS</a>
-                <a href="" class="col-3">HOT ITEMS</a>
-                <a href="" class="col-3">SALE ITEMS</a>
+                <a href="{{asset('new-list')}}" class="col-4 col-md-3">NEW ARRIVALS</a>
+                <a href="{{asset('hot-list')}}" class="col-4 col-md-3">HOT ITEMS</a>
+                <a href="{{asset('sale-list')}}" class="col-4 col-md-3">SALE ITEMS</a>
             </div>
+            <hr>
             <div class="bran">
                 <div class="row">
-                    <a href="" class="col-3">BRAND</a>
-                    <a href="" class="col-3">BRAND</a>
-                    <a href="" class="col-3">BRANDS</a>
-                    <a href="" class="col-3">BRAND</a>
+                    @foreach($brands as $brand)
+                        <a href="{{ asset('brand/'.$brand->slug.'/'.$brand->id) }}"
+                           class="col-6 col-md-3">{{$brand->name}}</a>
+                    @endforeach
                 </div>
             </div>
+
             <div class="cate">
                 <div class="row">
-                    <a href="" class="col-3">CATEGORY</a>
-                    <a href="" class="col-3">CATEGORY</a>
-                    <a href="" class="col-3">CATEGORY</a>
+                    @foreach($categories as $category)
+                        <a href="{{ asset('category/'.$category->slug.'/'.$category->id) }}"
+                           class="col-6 col-md-3">{{ $category->name }}</a>
+                    @endforeach
                 </div>
             </div>
         </div>

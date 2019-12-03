@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('css')
-    <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <link rel="stylesheet" href="/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <style>
         .image-container .image {
             background-repeat: no-repeat;
@@ -58,7 +58,7 @@
 @stop
 
 @section('javascript')
-    <script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <script src="/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
     <script>
         $(function () {
             $('.textarea').wysihtml5();
@@ -82,6 +82,31 @@
                     reader.readAsDataURL(image);
                 }
                 ;
+            });
+
+            //ajax size
+            $.ajax({
+                url: '{{ asset('size') }}',
+                type: 'GET',
+                data: {
+                    id: $("select[name='category_id']").val(),
+                    size: '{!! $product->size ?? '' !!}',
+                },
+            }).done(function (result) {
+                $('#size').html(result);
+            });
+
+            $("select[name='category_id']").change(function () {
+                $.ajax({
+                    url: '{{ asset('size') }}',
+                    type: 'GET',
+                    data: {
+                        id: $(this).val(),
+                        size: '{!! $product->size ?? '' !!}',
+                    },
+                }).done(function (result) {
+                    $('#size').html(result);
+                });
             });
         })
     </script>
@@ -174,14 +199,8 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Size <span title="Thông tin bắt buộc">*</span></label>
-                                    <div class="form-group">
-                                        <input type="checkbox"> S
-                                        <input type="checkbox"> M
-                                        <input type="checkbox"> L
-                                        <input type="checkbox"> XL
-                                    </div>
+                                <div class="form-group" id="size">
+                                    {{--ajax size--}}
                                 </div>
 
                                 <div class="form-group">
@@ -227,7 +246,7 @@
                                     @foreach( unserialize($product->image ?? serialize([])) as $key => $image )
                                         <div class='col-xs-4 col-md-2'>
                                             <div class='image'
-                                                 style='background-image:url({{ asset('storage/app/upload/resized-'.$image) }});'>
+                                                 style='background-image:url({{ asset('storage/upload/resized-'.$image) }});'>
                                                 <div class='remove'>
                                                     @if($key != 0)
                                                         <a class="makeAva"

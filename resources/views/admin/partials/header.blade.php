@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="" class="logo">
+    <a href="{{ asset('admin') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>VK</b>ing</span>
         <!-- logo for regular state and mobile devices -->
@@ -29,7 +29,7 @@
             {{--<li><!-- start message -->--}}
             {{--<a href="#">--}}
             {{--<div class="pull-left">--}}
-            {{--<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">--}}
+            {{--<img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">--}}
             {{--</div>--}}
             {{--<h4>--}}
             {{--Support Team--}}
@@ -42,7 +42,7 @@
             {{--<li>--}}
             {{--<a href="#">--}}
             {{--<div class="pull-left">--}}
-            {{--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
+            {{--<img src="/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
             {{--</div>--}}
             {{--<h4>--}}
             {{--AdminLTE Design Team--}}
@@ -54,7 +54,7 @@
             {{--<li>--}}
             {{--<a href="#">--}}
             {{--<div class="pull-left">--}}
-            {{--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
+            {{--<img src="/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
             {{--</div>--}}
             {{--<h4>--}}
             {{--Developers--}}
@@ -66,7 +66,7 @@
             {{--<li>--}}
             {{--<a href="#">--}}
             {{--<div class="pull-left">--}}
-            {{--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
+            {{--<img src="/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
             {{--</div>--}}
             {{--<h4>--}}
             {{--Sales Department--}}
@@ -78,7 +78,7 @@
             {{--<li>--}}
             {{--<a href="#">--}}
             {{--<div class="pull-left">--}}
-            {{--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
+            {{--<img src="/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
             {{--</div>--}}
             {{--<h4>--}}
             {{--Reviewers--}}
@@ -215,17 +215,17 @@
             <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                        <span class="hidden-xs">Admin</span>
+                        <img src="/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                        <span class="hidden-xs">{{ Auth::user()->name ?? 'Admin' }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                             <p>
-                                Admin
-                                <small>Member since ''</small>
+                                {{ Auth::user()->name ?? 'Admin' }}
+                                <small>Member since ' {{ Auth::user()->created_at ?? '' }}'</small>
                             </p>
                         </li>
                         <!-- Menu Body -->
@@ -249,7 +249,15 @@
                             {{--<a href="#" class="btn btn-default btn-flat">Profile</a>--}}
                             {{--</div>--}}
                             <div class="pull-right">
-                                <a href="{{ asset('admin/logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                                <a class="btn btn-default btn-flat" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    Sign out
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                             </div>
                         </li>
                     </ul>

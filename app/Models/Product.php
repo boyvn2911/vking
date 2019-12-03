@@ -16,4 +16,13 @@ class Product extends Model
     public function category(){
         return $this->belongsTo('App\Models\Category');
     }
+
+    public function trySave()
+    {
+        try{
+            $this->save();
+        }catch(\Exception $e){
+            return back()->with('error',$e->getMessage());
+        }
+    }
 }

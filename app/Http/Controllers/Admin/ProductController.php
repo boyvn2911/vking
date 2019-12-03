@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Repositories\{
-    ProductRepository, CategoryRepository, BrandRepository
+    ProductRepository, CateRepository, BrandRepository
 };
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -34,7 +34,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = $this->repository->getProductsOrderedbyPosition(10, 'desc');
+        $products = $this->repository->getProductsOrderedbyUpdated(15);
         return view('admin.products.index', compact('products'));
     }
 
@@ -43,7 +43,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(BrandRepository $brandRepository, CategoryRepository $categoryRepository)
+    public function create(BrandRepository $brandRepository, CateRepository $categoryRepository)
     {
         $brands = $brandRepository->getAllOrderByPosition('asc');
         $categories = $categoryRepository->getAllOrderByPosition('asc');
@@ -80,7 +80,7 @@ class ProductController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(BrandRepository $brandRepository, CategoryRepository $categoryRepository, $id)
+    public function edit(BrandRepository $brandRepository, CateRepository $categoryRepository, $id)
     {
         $brands = $brandRepository->getAllOrderByPosition('asc');
         $categories = $categoryRepository->getAllOrderByPosition('asc');
@@ -138,5 +138,22 @@ class ProductController extends Controller
     {
         $this->repository->makeAva($id, $key);
         return back()->with('success','Đổi ảnh đại diện thành công');
+    }
+
+    public function filterBrand($id)
+    {
+        if($id == 0){
+            $products = $this->repository->getProductsOrderedbyUpdated(15);
+        }else {
+            $products = $this->repository->filterBrand($id, 15);
+        }
+        return view('admin.products.table',compact('products'));
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $products = $this->repository->search($search, 100);
+        return view('admin.products.index', compact('products','search'));
     }
 }

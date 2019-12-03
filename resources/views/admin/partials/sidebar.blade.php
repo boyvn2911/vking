@@ -2,10 +2,10 @@
     <section class="sidebar">
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Admin</p>
+                <p>{{ Auth::user()->name ?? 'Admin' }}</p>
             </div>
         </div>
         <ul class="sidebar-menu" data-widget="tree">
@@ -38,10 +38,14 @@
             </li>
 
             <li class="">
-                <a href="">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
                     <i class="fa fa-info"></i> <span>Đăng xuất</span>
                     <span class="pull-right-container"></span>
                 </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </li>
         </ul>
     </section>
