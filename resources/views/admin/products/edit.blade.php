@@ -129,7 +129,8 @@
 
         <!-- Main content -->
         <section class="content">
-            <form method="post" action="{{ route('product.update', ['id' => $product->id]) }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('product.update', ['id' => $product->id]) }}"
+                  enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="col-md-6">
@@ -243,24 +244,26 @@
                             </div>
                             <div class="box-body">
                                 <div class="row image-container">
-                                    @foreach( unserialize($product->image ?? serialize([])) as $key => $image )
-                                        <div class='col-xs-4 col-md-2'>
-                                            <div class='image'
-                                                 style='background-image:url({{ asset('storage/upload/resized-'.$image) }});'>
-                                                <div class='remove'>
-                                                    @if($key != 0)
-                                                        <a class="makeAva"
-                                                           href="{{ asset('admin/product/makeAva/'.($product->id ?? '').'/'.$key ) }}"><i
-                                                                    class="fa fa-key"></i></a>
-                                                    @else
-                                                        <a class="makeAva">Avatar</a>
-                                                    @endif
-                                                    <a class="delete"
-                                                       href="{{ asset('admin/product/deleteImage/'.($product->id ?? '').'/'.$key) }}">x</a>
+                                    @if($product->image && @unserialize($product->image))
+                                        @foreach( unserialize($product->image) as $key => $image )
+                                            <div class='col-xs-4 col-md-2'>
+                                                <div class='image'
+                                                     style='background-image:url({{ asset('storage/upload/resized-'.$image) }});'>
+                                                    <div class='remove'>
+                                                        @if($key != 0)
+                                                            <a class="makeAva"
+                                                               href="{{ asset('admin/product/makeAva/'.($product->id ?? '').'/'.$key ) }}"><i
+                                                                        class="fa fa-key"></i></a>
+                                                        @else
+                                                            <a class="makeAva">Avatar</a>
+                                                        @endif
+                                                        <a class="delete"
+                                                           href="{{ asset('admin/product/deleteImage/'.($product->id ?? '').'/'.$key) }}">x</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
+                                    @endif
                                 </div>
                                 <div class="row image-container new">
                                     <div class="col-xs-4 col-md-2">
