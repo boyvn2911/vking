@@ -129,7 +129,7 @@
 
         <!-- Main content -->
         <section class="content">
-            <form method="post" action="{{ route('product.store') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('product.update') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="col-md-6">

@@ -50,9 +50,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     Route::group(['prefix' => 'product'], function () {
         Route::get('/', 'ProductController@index');
         Route::get('add', 'ProductController@create');
-        Route::post('add', 'ProductController@store');
+        Route::post('add', 'ProductController@store')->name('product.store');
         Route::get('edit/{id}', 'ProductController@edit');
-        Route::post('edit/{id}', 'ProductController@update');
+        Route::post('edit/{id}', 'ProductController@update')->name('product.store');
         Route::get('delete/{id}', 'ProductController@destroy');
         Route::post('search', 'ProductController@search');
 

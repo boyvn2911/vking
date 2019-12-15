@@ -85,7 +85,7 @@ class ProductController extends Controller
         $brands = $brandRepository->getAllOrderByPosition('asc');
         $categories = $categoryRepository->getAllOrderByPosition('asc');
         $product = $this->repository->show($id);
-        return view('admin.products.create', compact('product','brands','categories'));
+        return view('admin.products.edit', compact('product','brands','categories'));
     }
 
     /**
