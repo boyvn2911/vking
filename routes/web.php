@@ -52,7 +52,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
         Route::get('add', 'ProductController@create');
         Route::post('add', 'ProductController@store')->name('product.store');
         Route::get('edit/{id}', 'ProductController@edit');
-        Route::post('edit/{id}', 'ProductController@update')->name('product.store');
+        Route::post('edit/{id}', 'ProductController@update')->name('product.update');
         Route::get('delete/{id}', 'ProductController@destroy');
         Route::post('search', 'ProductController@search');
 
