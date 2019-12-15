@@ -90,7 +90,7 @@
                 type: 'GET',
                 data: {
                     id: $("select[name='category_id']").val(),
-                    size: '{!! $product->size ?? '' !!}',
+                    size: '',
                 },
             }).done(function (result) {
                 $('#size').html(result);
@@ -102,7 +102,7 @@
                     type: 'GET',
                     data: {
                         id: $(this).val(),
-                        size: '{!! $product->size ?? '' !!}',
+                        size: '',
                     },
                 }).done(function (result) {
                     $('#size').html(result);
@@ -117,13 +117,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                @if( isset($product) ) Sửa @else Thêm @endif
+                Thêm
                 <small>Sản phẩm</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li><a href="#">Sản phẩm</a></li>
-                <li class="active">@if( isset($product) ) Sửa @else Thêm @endif</li>
+                <li class="active">Thêm</li>
             </ol>
         </section>
 
@@ -142,14 +142,13 @@
                                 <div class="form-group">
                                     <label>Tên sản phẩm <span title="Thông tin bắt buộc">*</span></label>
                                     <input type="text" class="form-control" placeholder="Điền tên sản phẩm" name="name"
-                                           required value="{{ $product->name ?? '' }}">
+                                           required value="">
                                 </div>
                                 <div class="form-group">
                                     <label>Phân loại <span title="Thông tin bắt buộc">*</span></label>
                                     <select class="form-control" name="category_id">
                                         @foreach($categories as $category)
-                                            <option @if($category->id == ($product->category_id ?? null) ) selected
-                                                    @endif value="{{ $category->id }}">{{$category->name}}</option>
+                                            <option value="{{ $category->id }}">{{$category->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -157,8 +156,7 @@
                                     <label>Thương hiệu <span title="Thông tin bắt buộc">*</span></label>
                                     <select class="form-control" name="brand_id">
                                         @foreach($brands as $brand)
-                                            <option @if($brand->id == ($product->brand_id ?? null) ) selected
-                                                    @endif value="{{ $brand->id }}">{{$brand->name}}</option>
+                                            <option value="{{ $brand->id }}">{{$brand->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -169,7 +167,7 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control"
                                                        placeholder="Điền giá store (nếu có)" name="price_org"
-                                                       value="{{ $product->price_org ?? '' }}">
+                                                       value="">
                                                 <span class="input-group-addon">VNĐ</span>
                                             </div>
                                         </div>
@@ -180,7 +178,7 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control"
                                                        placeholder="Điền giá VKing (nếu có)" name="price_vking"
-                                                       value="{{ $product->price_vking ?? '' }}">
+                                                       value="">
                                                 <span class="input-group-addon">VNĐ</span>
                                             </div>
                                         </div>
@@ -192,7 +190,7 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control"
                                                        placeholder="Điền giá sale (nếu có)" name="price_sale"
-                                                       value="{{ $product->price_sale ?? '' }}">
+                                                       value="">
                                                 <span class="input-group-addon">VNĐ</span>
                                             </div>
                                         </div>
@@ -206,8 +204,7 @@
                                 <div class="form-group">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="hot" value="1"
-                                                   @if($product->hot ?? false) checked @endif>
+                                            <input type="checkbox" name="hot" value="1">
                                             Nổi bật
                                         </label>
                                     </div>
@@ -230,7 +227,6 @@
                             <div class="box-body pad">
                                 <textarea class="textarea" placeholder="Place some text here" name="description"
                                           style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
-                                    {!! $product->description ?? '' !!}
                                 </textarea>
                             </div>
                         </div>
@@ -243,26 +239,7 @@
                             </div>
                             <div class="box-body">
                                 <div class="row image-container">
-                                    @if($product->image && @unserialize($product->image))
-                                        @foreach( unserialize($product->image) as $key => $image )
-                                            <div class='col-xs-4 col-md-2'>
-                                                <div class='image'
-                                                     style='background-image:url({{ asset('storage/upload/resized-'.$image) }});'>
-                                                    <div class='remove'>
-                                                        @if($key != 0)
-                                                            <a class="makeAva"
-                                                               href="{{ asset('admin/product/makeAva/'.($product->id ?? '').'/'.$key ) }}"><i
-                                                                        class="fa fa-key"></i></a>
-                                                        @else
-                                                            <a class="makeAva">Avatar</a>
-                                                        @endif
-                                                        <a class="delete"
-                                                           href="{{ asset('admin/product/deleteImage/'.($product->id ?? '').'/'.$key) }}">x</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    @endif
+
                                 </div>
                                 <div class="row image-container new">
                                     <div class="col-xs-4 col-md-2">
@@ -272,7 +249,7 @@
                                 </div>
                             </div>
                             <div class="box-footer">
-                                <button class="btn btn-primary">@if( isset($product) ) Sửa @else Thêm @endif</button>
+                                <button class="btn btn-primary">Thêm</button>
                             </div>
                         </div>
                     </div>
